@@ -1,0 +1,11 @@
+<html>
+    <body>
+            {% if user.is_authenticated%}
+                <form method="POST">
+                    {% csrf_token%}
+                    {{form}}
+                    <input type="submit">
+                </form>
+            {% endif %}        
+    </body>
+</html>
