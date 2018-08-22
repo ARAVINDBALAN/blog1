@@ -1,17 +1,19 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse_lazy
+from django.http import JsonResponse
 from django.views import generic
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm,WritePost
 from django.utils import timezone
-from .models import post
+from .models import post,User
+from django.contrib.auth.decorators import login_required
+#from django.contrib import messages 
 # Create your views here.
+#messages.error(request,'Invalid')
 def home(request):
     pst = post.objects.all()
     return render(request,'blog/index.html',{'pst':pst})
-
-
 
 def sign_up(request):
     if request.method == 'POST':
@@ -30,6 +32,25 @@ def sign_up(request):
 def get_user_details(request,email):
     user = User.objects.get(email=email)
     return render(request,'blog/index.html',{"user":user})
+@login_required
+def post_likes_add(request,user_id,id):
+    user = User.objects.get(id=user_id)
+    pst = post.objects.get(id=id)
+    if pst.post_like.filter(id=user_id).exists():
+        pst.post_like.remove(user)
+    else:
+        pst.post_like.add(user)
+    Post = post.objects.all()    
+    context = {'pst': Post}
+    return render(request,'blog/index.html',context=context)            
+
+@login_required
+def delete_post(request,id,user_id):
+    del_ob = post.objects.get(id=id)
+    if (del_ob.post_author.id == user_id):
+        del_ob.delete()    
+    pst = post.objects.all()
+    return render(request,'blog/index.html',{'pst':pst})
 
 def post_new(request):
     if request.method == "POST":
@@ -42,4 +63,4 @@ def post_new(request):
             return redirect('/home/', pk=post.pk)
     else:
         form = WritePost()
-    return render(request, 'blog/post_edit.html', {'form': form})   
+    return render(request,'blog/post_edit.html', {'form': form})   

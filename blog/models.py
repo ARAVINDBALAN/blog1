@@ -51,11 +51,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 class post(models.Model):
     post_text = models.CharField(max_length=200)
     post_title = models.CharField(max_length=100)
+    post_like = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='post_likes')
     post_date = models.DateField('date_published')
     post_author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
-    def get_post_title(self):
+    def get_post_title(self):   
         return self.post_title
 
     def get_post_text(self):
         return self.post_text    
+    @property
+    def total_likes(self):
+        return self.post_like.count()    

@@ -19,5 +19,8 @@ from . import views
 urlpatterns = [
     path('home/',views.home,name='home'),
     path('sign_up/',views.sign_up,name='sign_up'),
-    path('new/',views.post_new,name='post_new'),    
+    path('new/',views.post_new,name='post_new'),
+    path('delete/<int:user_id>/<int:id>',views.delete_post,name='delete_post'),
+    path('like/<int:user_id>/<int:id>', views.post_likes_add, name='post_likes_add'),
+
 ]
