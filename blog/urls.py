@@ -22,5 +22,7 @@ urlpatterns = [
     path('new/',views.post_new,name='post_new'),
     path('delete/<int:user_id>/<int:id>',views.delete_post,name='delete_post'),
     path('like/<int:user_id>/<int:id>', views.post_likes_add, name='post_likes_add'),
+    path('Contact/', views.Contact_me, name='Contact_me'),
+    path('about/',views.about,name='about'),
 
 ]

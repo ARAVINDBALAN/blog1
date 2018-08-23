@@ -46,7 +46,7 @@
               <a class="nav-link" href="#top">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
             <li class="nav-item">
               {% if user.is_authenticated %}
@@ -56,7 +56,7 @@
               {% endif %}
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="{% url 'Contact_me' %}">Contact</a>
             </li>
           </ul>
         </div>
@@ -84,6 +84,10 @@
         <div class="clearfix">
             <a class="btn btn-primary float-right" href="{% url 'post_new'%}">Write a post &rarr;</a>
         </div>
+        {% else %}
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{% url 'login'%}">Write a post &rarr;</a>
+      </div>
         {% endif %}
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
@@ -93,14 +97,18 @@
                   {{p.post_title}}
               </h2>
               <br>
-              <h6 class="post-subtitle" style="text-align:center;">
+              <h6 class="post-subtitle" style="text-align:left;">
                   {{p.post_text}}
               </h6>
             <p class="post-meta">Posted by
               {{p.post_author.first_name}}
-              In  {{p.post_date}}</p>
+              In  {{p.post_date}}
+              {% if user.is_authenticated %}
               <a href="{% url 'post_likes_add' user_id=user.id id=p.id %}" ><i onclick="myFunction(this)" class="fa fa-thumbs-up"></i> </a>   {{p.total_likes}}
               <br>
+              {% else %}
+              <a href="{% url 'login' %}" class="post-subtitle" style="color:blueviolet;">Login to Like</a></p>
+              {% endif %}
               {% if user == p.post_author%}
                 <a href = "{% url 'delete_post' user_id=user.id id=p.id%}" class="post-subtitle del">Delete post</a>
               {% endif %}
@@ -115,46 +123,11 @@
     <hr>
 
     <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
-          </div>
-        </div>
-      </div>
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <!-- Custom scripts for this template -->
     <script src="/static/js/clean-blog.min.js"></script>
     <script>
@@ -162,7 +135,6 @@
        x.classList.toggle("fa-thumbs-down");
     }
     </script>
-
   </body>
 
 </html>

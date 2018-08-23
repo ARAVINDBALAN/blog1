@@ -28,7 +28,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="#">Happy Words</a>
+        <a class="navbar-brand" href="{% url 'Contact_me' %}">Happy Words</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -39,7 +39,7 @@
               <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
           </ul>
         </div>
@@ -53,8 +53,8 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>Your Story </h1>
-              <span class="subheading">Everyone has a story to tell.</span>
+              <h1>Contact Me</h1>
+              <span class="subheading">Have questions? I have answers.</span>
             </div>
           </div>
         </div>
@@ -65,6 +65,10 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+          <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+          <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+          <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+          <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
           <form name="contact_me" action="" method="POST">
             {% csrf_token%}
             <section>
@@ -74,19 +78,24 @@
                       <div class="row">
                         <div class="col-sm-8 col-sm-offset-2">
                           <div>
-                            <h2>Write Your Own Story </h2>
+                            <h2>CONTACT US</h2>
                           </div>
-                          <form method="post" data-form-title="your story">
+                          <form method="post" data-form-title="CONTACT US">
                             <input type="hidden" data-form-email="true">
                             <div class="form-group">
-                              <input type="text" class="form-control" name="post_title" required="" placeholder="Title*" data-form-field="Name" required id="id_name">
+                              <input type="text" class="form-control" name="name" required="" placeholder="Name*" data-form-field="Name" required id="id_name">
                             </div>
-                           
                             <div class="form-group">
-                              <textarea class="form-control" name="post_text" placeholder="Message" rows="7" data-form-field="Message*" required id="id_messages"></textarea>
+                              <input type="email" class="form-control" name="email" required="" placeholder="Email*" data-form-field="Email" required="id_email">
+                            </div>
+                            <div class="form-group">
+                              <input type="tel" class="form-control" name="phone" placeholder="Phone" data-form-field="Phone*" required id="id_phone">
+                            </div>
+                            <div class="form-group">
+                              <textarea class="form-control" name="messages" placeholder="Message" rows="7" data-form-field="Message*" required id="id_messages"></textarea>
                             </div>
                             <div>
-                              <button type="submit" class="btn btn-medium btn-default">Send</button>
+                              <button type="submit" class="btn btn-medium btn-danger">CONTACT US</button>
                             </div>
                           </form>
                         </div>
@@ -111,40 +120,7 @@
     <hr>
 
     <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+   
 
     <!-- Bootstrap core JavaScript -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>

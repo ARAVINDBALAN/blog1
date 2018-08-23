@@ -49,7 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 #post data fields
 class post(models.Model):
-    post_text = models.CharField(max_length=200)
+    post_text = models.TextField(max_length=200)
     post_title = models.CharField(max_length=100)
     post_like = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='post_likes')
     post_date = models.DateField('date_published')
@@ -62,4 +62,16 @@ class post(models.Model):
         return self.post_text    
     @property
     def total_likes(self):
-        return self.post_like.count()    
+        return self.post_like.count()
+
+
+class contact(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField('email')
+    messages = models.TextField(max_length=200)
+    phone = models.CharField(max_length=200)
+
+
+    def __str__(self):
+        return self.name+self.messages
+

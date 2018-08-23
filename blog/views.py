@@ -1,16 +1,33 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse_lazy
 from django.http import JsonResponse
+from django.core.mail import send_mail
 from django.views import generic
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm,WritePost
+from .forms import SignUpForm,WritePost,Contact
 from django.utils import timezone
-from .models import post,User
+from .models import post,User,contact
 from django.contrib.auth.decorators import login_required
-#from django.contrib import messages 
+from django.contrib import messages 
 # Create your views here.
 #messages.error(request,'Invalid')
+
+def Contact_me(request):
+    if request.method == "POST":
+        form = Contact(request.POST)
+        #print("11111111111111111111111111111111111111111111111111111111111111111\n1111111111111111111\n1111111111111111111\n")
+        if form.is_valid:
+            form.save()
+            messages.success(request,"Request has been received")
+            return redirect('/Contact/')
+    else:
+        form = Contact()
+    return render(request,'blog/contact.html',{'form':form})
+
+def about(request):
+    return render(request,'blog/about.html')
+
 def home(request):
     pst = post.objects.all()
     return render(request,'blog/index.html',{'pst':pst})
@@ -28,6 +45,11 @@ def sign_up(request):
     else:
         form = SignUpForm()
     return render(request, 'blog/sign_up.html', {'form': form})    
+
+#def contact(request):
+ #   return render(request,'blog/contact.html')
+
+
 
 def get_user_details(request,email):
     user = User.objects.get(email=email)
