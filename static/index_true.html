@@ -1,0 +1,38 @@
+<html>
+    <head><title>
+        Sntory life - Home
+    </title>
+    </head>
+    <body>
+        <a href="{% url 'login' %} ">Login</a><br>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">logout </a>
+          hi  {{user.email}}
+          <br>{{user.first_name}}<br>
+           <a href="{% url 'post_new' %}">ssss</a>
+        <br>
+        <a href="{% url 'sign_up' %}">sigm</a>
+
+        <br>
+        
+        {% for p in pst %}
+            {% if user == p.post_author %}
+            <a href ="{% url 'delete_post' user_id=user.id id=p.id  %}"> delete post </a> <br/> 
+            {% endif %}
+            {{p.post_title}}<br>
+            {{p.id}}
+            {{p.post_text}}<br>
+            <form  method="POST">
+                {% csrf_token %}
+                <a href="{% url 'post_likes_add' user_id=user.id id=p.id%}">like</a>
+                likes {{p.total_likes}}</form>
+
+            <br>
+            <br>
+        {% endfor %}    
+        {% endif %}
+        delete 
+        <br>
+        change <br>
+    </body>
+</html>
