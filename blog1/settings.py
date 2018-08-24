@@ -107,8 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 #app user defined variable
 AUTH_USER_MODEL = 'blog.User'
-LOGIN_REDIRECT_URL=''
-LOGOUT_REDIRECT_URL=''
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL='/'
 
 
 # Internationalization
