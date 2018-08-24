@@ -26,6 +26,7 @@ SECRET_KEY = 'f%o262u$_kk4#^vqk9e*&$l%4o*8%flr3+c6&u6jjf5i%i*vs#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
 
@@ -78,8 +79,8 @@ WSGI_APPLICATION = 'blog1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blog_app',
-        'USER': 'aravind',
+        'NAME': 'djangogirls',
+        'USER': 'name',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
@@ -106,8 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 #app user defined variable
 AUTH_USER_MODEL = 'blog.User'
-LOGIN_REDIRECT_URL='/home/'
-LOGOUT_REDIRECT_URL='/home/'
+LOGIN_REDIRECT_URL=''
+LOGOUT_REDIRECT_URL=''
 
 
 # Internationalization
