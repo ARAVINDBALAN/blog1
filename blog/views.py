@@ -41,7 +41,7 @@ def sign_up(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(email=email, password=raw_password)
             #login(request, user)
-            return redirect('/')
+            return redirect('')
     else:
         form = SignUpForm()
     return render(request, 'blog/sign_up.html', {'form': form})    
@@ -82,7 +82,7 @@ def post_new(request):
             post.post_author = request.user
             post.post_date = timezone.now()
             post.save()
-            return redirect('/home/', pk=post.pk)
+            return redirect('', pk=post.pk)
     else:
         form = WritePost()
     return render(request,'blog/post_edit.html', {'form': form})   
