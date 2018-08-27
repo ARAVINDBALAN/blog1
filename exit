@@ -1,0 +1,30 @@
+                           List of relations
+ Schema |               Name                |   Type   |     Owner      
+--------+-----------------------------------+----------+----------------
+ public | auth_group                        | table    | hadxodkzmkyfhk
+ public | auth_group_id_seq                 | sequence | hadxodkzmkyfhk
+ public | auth_group_permissions            | table    | hadxodkzmkyfhk
+ public | auth_group_permissions_id_seq     | sequence | hadxodkzmkyfhk
+ public | auth_permission                   | table    | hadxodkzmkyfhk
+ public | auth_permission_id_seq            | sequence | hadxodkzmkyfhk
+ public | blog_contact                      | table    | hadxodkzmkyfhk
+ public | blog_contact_id_seq               | sequence | hadxodkzmkyfhk
+ public | blog_post                         | table    | hadxodkzmkyfhk
+ public | blog_post_id_seq                  | sequence | hadxodkzmkyfhk
+ public | blog_post_post_like               | table    | hadxodkzmkyfhk
+ public | blog_post_post_like_id_seq        | sequence | hadxodkzmkyfhk
+ public | blog_user                         | table    | hadxodkzmkyfhk
+ public | blog_user_groups                  | table    | hadxodkzmkyfhk
+ public | blog_user_groups_id_seq           | sequence | hadxodkzmkyfhk
+ public | blog_user_id_seq                  | sequence | hadxodkzmkyfhk
+ public | blog_user_user_permissions        | table    | hadxodkzmkyfhk
+ public | blog_user_user_permissions_id_seq | sequence | hadxodkzmkyfhk
+ public | django_admin_log                  | table    | hadxodkzmkyfhk
+ public | django_admin_log_id_seq           | sequence | hadxodkzmkyfhk
+ public | django_content_type               | table    | hadxodkzmkyfhk
+ public | django_content_type_id_seq        | sequence | hadxodkzmkyfhk
+ public | django_migrations                 | table    | hadxodkzmkyfhk
+ public | django_migrations_id_seq          | sequence | hadxodkzmkyfhk
+ public | django_session                    | table    | hadxodkzmkyfhk
+(25 rows)
+
